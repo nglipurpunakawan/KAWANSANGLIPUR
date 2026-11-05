@@ -1,0 +1,119 @@
+/* ==========================================
+   KAWANSA - Profil Guru (khusus fitur profil)
+   Hanya menata: .teacher-info (kanan atas) & #profileModal
+========================================== */
+
+/* Identitas profil dapat diklik */
+.teacher-info {
+  cursor: pointer;
+  padding: 5px 10px 5px 5px;
+  border-radius: 999px;
+  border: 1px solid transparent;
+  transition: .2s;
+}
+.teacher-info:hover {
+  background: var(--cream);
+  border-color: var(--border);
+}
+.teacher-info:focus-visible {
+  outline: 3px solid var(--np-gold, #f2b632);
+  outline-offset: 2px;
+}
+.teacher-avatar {
+  overflow: hidden;
+  flex: none;
+}
+.teacher-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Modal profil */
+.profile-modal { width: min(100%, 520px); }
+
+.profile-photo-row {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  padding-bottom: 18px;
+  margin-bottom: 6px;
+  border-bottom: 1px solid var(--border);
+}
+.profile-photo-preview {
+  width: 84px;
+  height: 84px;
+  flex: none;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  color: #fff;
+  background: var(--orange);
+  font-size: 32px;
+  font-weight: 800;
+  border: 3px solid var(--cream);
+  box-shadow: 0 0 0 2px var(--orange);
+}
+.profile-photo-preview img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.profile-photo-actions {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+}
+.profile-photo-actions small {
+  color: var(--muted);
+  font-size: 11px;
+}
+.profile-photo-actions .text-btn { padding: 0; }
+
+.profile-fields label {
+  display: block;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--navy);
+  margin: 14px 0 6px;
+}
+.profile-fields input {
+  width: 100%;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 12px 13px;
+  outline: none;
+  background: white;
+  color: var(--text);
+  transition: .2s;
+}
+.profile-pass {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.profile-pass .text-btn { flex: none; }
+
+.profile-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+@media (max-width: 750px) {
+  /* Di layar kecil, identitas lama disembunyikan; tampilkan avatar saja agar profil tetap bisa dibuka */
+  .teacher-info {
+    display: flex;
+    margin-left: auto;
+    padding: 0;
+    border: 0;
+  }
+  .teacher-info > div:last-child { display: none; }
+}
+@media (max-width: 520px) {
+  .profile-photo-row { flex-direction: column; align-items: flex-start; }
+}

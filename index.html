@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>KAWANSA | Asesmen Nglipur Punakawan</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../shared/theme.css">
+    <link rel="stylesheet" href="profil-guru.css">
+</head>
+<body class="mod-kawansa">
+
+  <!-- LOGIN -->
+  <section id="loginScreen" class="login-screen">
+    <div class="login-card">
+      <div class="brand-mark"><img src="../assets/img/logo-mark.svg" alt="Logo Nglipur Punakawan"></div>
+      <div class="np-mascots" aria-hidden="true"><img src="../assets/img/4-karakter-punakawan.png" alt="Karakter Punakawan" loading="lazy"></div>
+      <p class="eyebrow">TIM SEGAPETRA PRESENTS</p>
+      <h1>KAWANSA</h1>
+      <p class="login-subtitle">Kawan Asesmen Nglipur Punakawan</p>
+
+      <form id="loginForm">
+        <label for="username">Username</label>
+        <input id="username" type="text" placeholder="Masukkan username" required>
+
+        <label for="password">Password</label>
+        <input id="password" type="password" placeholder="Masukkan password" required>
+
+        <p id="loginError" class="error-message"></p>
+        <button type="submit" class="primary-btn full-btn">Masuk ke Platform</button>
+      </form>
+
+      <p class="login-footer">Developed by Tim Segapetra</p>
+    </div>
+  </section>
+
+  <!-- MAIN APP -->
+  <div id="appShell" class="app-shell hidden">
+
+    <aside id="sidebar" class="sidebar">
+      <div class="sidebar-brand">
+        <div class="brand-mark small-mark"><img src="../assets/img/logo-mark.svg" alt="Logo Nglipur Punakawan"></div>
+        <div>
+          <h2>KAWANSA</h2>
+          <small>Tim Segapetra</small>
+        </div>
+      </div>
+
+      <div class="sidebar-label">MENU UTAMA</div>
+      <nav>
+        <button class="nav-link active" data-page="dashboardPage">⌂ <span>Dashboard</span></button>
+        <button class="nav-link" data-page="forLearningPage">✦ <span>Asesmen for Learning</span></button>
+        <button class="nav-link" data-page="asLearningPage">◈ <span>Asesmen as Learning</span></button>
+        <button class="nav-link" data-page="ofLearningPage">◇ <span>Asesmen of Learning</span></button>
+        <button class="nav-link" data-page="recapPage">▤ <span>Rekapitulasi Nilai</span></button>
+      </nav>
+
+      <div class="sidebar-bottom">
+        <div class="sidebar-note">
+          <strong>Nglipur Punakawan</strong>
+          <p>Menggali logika di balik cerita.</p>
+        </div>
+        <button id="logoutBtn" class="logout-btn">↪ Keluar</button>
+      </div>
+    </aside>
+
+    <main class="main-content">
+      <header class="topbar">
+        <button id="mobileMenu" class="mobile-menu">☰</button>
+        <div>
+          <p class="eyebrow">PLATFORM ASESMEN DIGITAL</p>
+          <h2 id="pageTitle">Dashboard</h2>
+        </div>
+        <div class="teacher-info" id="teacherProfileBtn" role="button" tabindex="0" title="Buka pengaturan profil" aria-label="Buka pengaturan profil guru">
+          <div class="teacher-avatar" id="teacherAvatar">G</div>
+          <div>
+            <strong id="teacherName">Guru</strong>
+            <small id="teacherRole">Administrator</small>
+          </div>
+        </div>
+      </header>
+
+      <!-- DASHBOARD -->
+      <section id="dashboardPage" class="page active-page">
+        <div class="welcome-banner">
+          <div>
+            <p class="eyebrow light">SUGENG RAWUH!</p>
+            <h1>Selamat Datang di KAWANSA</h1>
+            <p>Kelola dan pantau hasil asesmen pembelajaran Nglipur Punakawan.</p>
+          </div>
+          <img class="banner-punakawan" src="../assets/img/4-karakter-punakawan.png" alt="Empat tokoh Punakawan" width="1200" height="694">
+          <div class="banner-decoration">✦</div>
+        </div>
+
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">RINGKASAN DATA</p>
+            <h3>Dashboard Asesmen</h3>
+          </div>
+          <span id="todayLabel" class="date-label"></span>
+        </div>
+
+        <div class="stats-grid">
+          <div class="stat-card">
+            <span class="stat-icon">♙</span>
+            <p>Total Murid</p>
+            <h2 id="statStudents">0</h2>
+          </div>
+          <div class="stat-card">
+            <span class="stat-icon">✦</span>
+            <p>Data Challenge</p>
+            <h2 id="statFor">0</h2>
+          </div>
+          <div class="stat-card">
+            <span class="stat-icon">◈</span>
+            <p>Data Profil Lulusan</p>
+            <h2 id="statAs">0</h2>
+          </div>
+          <div class="stat-card">
+            <span class="stat-icon">◇</span>
+            <p>Data Uji Kompetensi</p>
+            <h2 id="statOf">0</h2>
+          </div>
+        </div>
+
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">HASIL PENILAIAN</p>
+            <h3>Nilai Akhir Setiap Asesmen</h3>
+          </div>
+        </div>
+
+        <div id="finalOutputCards" class="output-grid">
+          <div class="empty-card">Belum ada data asesmen yang tersimpan.</div>
+        </div>
+
+        <div class="info-panel">
+          <strong>Informasi Penggunaan</strong>
+          <p>Masukkan skor setiap komponen asesmen. Nilai akhir setiap asesmen akan dihitung secara otomatis dalam skala 0–100. Nilai antarasesmen tidak digabungkan.</p>
+        </div>
+      </section>
+
+      <!-- FOR LEARNING -->
+      <section id="forLearningPage" class="page">
+        <div class="page-intro">
+          <p class="eyebrow">ASESMEN FOR LEARNING</p>
+          <h2>Asesmen untuk Pembelajaran</h2>
+          <p>Penilaian aktivitas murid selama menyelesaikan The Challenge.</p>
+        </div>
+
+        <div class="card">
+          <div class="card-heading">
+            <div>
+              <h3>Guiding Question</h3>
+              <p>Pengisian melalui Tally Form yang telah disiapkan.</p>
+            </div>
+            <span class="tag">Tautan Eksternal</span>
+          </div>
+          <label for="guidingUrl">Link Tally Form Guiding Question</label>
+          <div class="link-input">
+            <input id="guidingUrl" type="url" placeholder="https://tally.so/...">
+            <button id="saveGuidingUrl" class="secondary-btn" type="button">Simpan</button>
+            <button id="openGuiding" class="primary-btn" type="button">Buka Form</button>
+          </div>
+        </div>
+
+        <form id="forForm" class="card assessment-form">
+          <div class="card-heading">
+            <div>
+              <h3>The Challenge</h3>
+              <p>Penilaian tiga aktivitas dalam kegiatan pembelajaran.</p>
+            </div>
+            <span class="score-limit">Maksimal 12 poin</span>
+          </div>
+
+          <div class="form-grid">
+            <div class="member-field">
+              <label>Anggota Kelompok <span class="hint">minimal 1, maksimal 5 nama</span></label>
+              <div class="member-inputs">
+              <input name="member1" type="text" autocomplete="off" required placeholder="Anggota 1">
+              <input name="member2" type="text" autocomplete="off" placeholder="Anggota 2 (opsional)">
+              <input name="member3" type="text" autocomplete="off" placeholder="Anggota 3 (opsional)">
+              <input name="member4" type="text" autocomplete="off" placeholder="Anggota 4 (opsional)">
+              <input name="member5" type="text" autocomplete="off" placeholder="Anggota 5 (opsional)">
+              </div>
+              <p id="memberError" class="error-message" role="alert"></p>
+            </div>
+            <div>
+              <label>Kelas</label>
+              <input name="className" type="text" required placeholder="Contoh: VII A">
+            </div>
+            <div>
+              <label>Tanggal Penilaian</label>
+              <input name="date" type="date" required>
+            </div>
+          </div>
+
+          <div class="rubric-header">
+            <h4>Skor Aktivitas</h4>
+            <button type="button" class="text-btn" data-modal="challengeRubric">Lihat pedoman skor</button>
+          </div>
+
+          <div class="score-grid">
+            <div class="score-item">
+              <label>Aktivitas 1</label>
+              <select name="activity1" class="score-select" required>
+                <option value="">Pilih skor</option>
+                <option value="0">0</option><option value="1">1</option><option value="2">2</option>
+                <option value="3">3</option><option value="4">4</option>
+              </select>
+            </div>
+            <div class="score-item">
+              <label>Aktivitas 2</label>
+              <select name="activity2" class="score-select" required>
+                <option value="">Pilih skor</option>
+                <option value="0">0</option><option value="1">1</option><option value="2">2</option>
+                <option value="3">3</option><option value="4">4</option>
+              </select>
+            </div>
+            <div class="score-item">
+              <label>Aktivitas 3</label>
+              <select name="activity3" class="score-select" required>
+                <option value="">Pilih skor</option>
+                <option value="0">0</option><option value="1">1</option><option value="2">2</option>
+                <option value="3">3</option><option value="4">4</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="total-box">
+            <span>Total Skor Challenge</span>
+            <strong id="challengeTotal">0 / 12</strong>
+          </div>
+
+          <label>Catatan Guru (opsional)</label>
+          <textarea name="notes" rows="3" placeholder="Catatan perkembangan murid..."></textarea>
+
+          <button type="submit" class="primary-btn">Simpan Penilaian Challenge</button>
+        </form>
+      </section>
+
+      <!-- AS LEARNING -->
+      <section id="asLearningPage" class="page">
+        <div class="page-intro">
+          <p class="eyebrow">ASESMEN AS LEARNING</p>
+          <h2>Asesmen sebagai Pembelajaran</h2>
+          <p>Penilaian diri dan perkembangan dimensi profil lulusan.</p>
+        </div>
+
+        <div class="card">
+          <div class="card-heading">
+            <div>
+              <h3>Refleksi Diri</h3>
+              <p>Pengisian refleksi melalui Tally Form.</p>
+            </div>
+            <span class="tag">Tautan Eksternal</span>
+          </div>
+          <label for="reflectionUrl">Link Tally Form Refleksi Diri</label>
+          <div class="link-input">
+            <input id="reflectionUrl" type="url" placeholder="https://tally.so/...">
+            <button id="saveReflectionUrl" class="secondary-btn" type="button">Simpan</button>
+            <button id="openReflection" class="primary-btn" type="button">Buka Form</button>
+          </div>
+        </div>
+
+        <form id="asForm" class="card assessment-form">
+          <div class="card-heading">
+            <div>
+              <h3>Lembar Dimensi Profil Lulusan</h3>
+              <p>Penilaian enam dimensi dengan skala 0–4.</p>
+            </div>
+            <span class="score-limit">Maksimal 24 poin</span>
+          </div>
+
+          <div class="form-grid">
+            <div>
+              <label>Nama Murid</label>
+              <input name="name" type="text" list="studentList" autocomplete="off" required placeholder="Nama lengkap murid">
+            </div>
+            <div>
+              <label>Kelas</label>
+              <input name="className" type="text" required placeholder="Contoh: VII A">
+            </div>
+            <div>
+              <label>Tanggal Penilaian</label>
+              <input name="date" type="date" required>
+            </div>
+          </div>
+
+          <div class="rubric-header">
+            <h4>Skor Dimensi Profil Lulusan</h4>
+            <button type="button" class="text-btn" data-modal="profileRubric">Lihat pedoman skor</button>
+          </div>
+
+          <div id="profileScores" class="score-list"></div>
+
+          <div class="total-box">
+            <span>Total Skor Profil Lulusan</span>
+            <strong id="profileTotal">0 / 24</strong>
+          </div>
+
+          <label>Catatan Guru (opsional)</label>
+          <textarea name="notes" rows="3" placeholder="Catatan perkembangan murid..."></textarea>
+
+          <button type="submit" class="primary-btn">Simpan Penilaian Profil Lulusan</button>
+        </form>
+      </section>
+
+      <!-- OF LEARNING -->
+      <section id="ofLearningPage" class="page">
+        <div class="page-intro">
+          <p class="eyebrow">ASESMEN OF LEARNING</p>
+          <h2>Asesmen Hasil Pembelajaran</h2>
+          <p>Uji kompetensi berpikir kreatif (individu) dan kinerja presentasi (kelompok, dinilai per individu).</p>
+        </div>
+
+        <!-- BAGIAN A -->
+        <div class="of-part">
+          <span class="of-part-badge">A</span>
+          <div>
+            <p class="eyebrow">BAGIAN A</p>
+            <h3>Uji Kompetensi Berpikir Kreatif</h3>
+          </div>
+        </div>
+
+        <form id="ofForm" class="card assessment-form">
+          <div class="card-heading">
+            <div>
+              <h3>Uji Kompetensi Berpikir Kreatif</h3>
+              <p>Penilaian berdasarkan indikator fluency, flexibility, dan novelty.</p>
+            </div>
+            <span class="score-limit">Maksimal 24 poin</span>
+          </div>
+
+          <div class="form-grid">
+            <div>
+              <label>Nama Murid</label>
+              <input name="name" type="text" list="studentList" autocomplete="off" required placeholder="Nama lengkap murid">
+            </div>
+            <div>
+              <label>Kelas</label>
+              <input name="className" type="text" required placeholder="Contoh: VII A">
+            </div>
+            <div>
+              <label>Tanggal Penilaian</label>
+              <input name="date" type="date" required>
+            </div>
+          </div>
+
+          <div class="rubric-header">
+            <h4>Skor Kemampuan Berpikir Kreatif</h4>
+            <button type="button" class="text-btn" data-modal="creativeRubric">Lihat pedoman skor</button>
+          </div>
+
+          <div id="creativeScores" class="creative-grid"></div>
+
+          <div class="total-box">
+            <span>Total Skor Uji Kompetensi</span>
+            <strong id="creativeTotal">0 / 24</strong>
+          </div>
+
+          <label>Catatan Guru (opsional)</label>
+          <textarea name="notes" rows="3" placeholder="Catatan hasil asesmen..."></textarea>
+
+          <button type="submit" class="primary-btn">Simpan Penilaian Uji Kompetensi</button>
+        </form>
+
+        <!-- BAGIAN B -->
+        <div class="of-part of-part-b">
+          <span class="of-part-badge">B</span>
+          <div>
+            <p class="eyebrow">BAGIAN B</p>
+            <h3>Kinerja Presentasi</h3>
+          </div>
+        </div>
+
+        <form id="presGroupForm" class="card assessment-form stack-card" novalidate>
+          <div class="card-heading">
+            <div>
+              <h3 id="presGroupFormTitle">1. Data Kelompok</h3>
+              <p>Isi nama kelompok dan anggotanya secara mandiri. Data ini khusus untuk Kinerja Presentasi dan tidak diambil dari The Challenge.</p>
+            </div>
+            <span class="tag">Penilaian Individu</span>
+          </div>
+
+          <div class="form-grid">
+            <div>
+              <label for="presGroupName">Nama / Identitas Kelompok</label>
+              <input id="presGroupName" name="groupName" type="text" autocomplete="off" placeholder="Contoh: Kelompok 1 atau Tim Semar">
+            </div>
+            <div>
+              <label for="presGroupClass">Kelas</label>
+              <input id="presGroupClass" name="className" type="text" autocomplete="off" placeholder="Contoh: VII A">
+            </div>
+            <div class="member-field">
+              <label>Anggota Kelompok <span class="hint">minimal 1, maksimal 5 nama</span></label>
+              <div class="member-inputs">
+                <input name="member1" type="text" list="studentList" autocomplete="off" placeholder="Anggota 1">
+                <input name="member2" type="text" list="studentList" autocomplete="off" placeholder="Anggota 2 (opsional)">
+                <input name="member3" type="text" list="studentList" autocomplete="off" placeholder="Anggota 3 (opsional)">
+                <input name="member4" type="text" list="studentList" autocomplete="off" placeholder="Anggota 4 (opsional)">
+                <input name="member5" type="text" list="studentList" autocomplete="off" placeholder="Anggota 5 (opsional)">
+              </div>
+              <p id="presGroupError" class="error-message" role="alert"></p>
+            </div>
+          </div>
+
+          <div class="btn-row">
+            <button type="submit" id="presGroupSubmit" class="primary-btn">Simpan Kelompok</button>
+            <button type="button" id="presGroupCancel" class="secondary-btn hidden">Batal Ubah</button>
+          </div>
+        </form>
+
+        <div class="card stack-card">
+          <div class="card-heading">
+            <div>
+              <h3>2. Pilih Anggota yang Dinilai</h3>
+              <p>Pilih kelompok, lalu pilih satu anggota. Setiap anggota dinilai dan menerima nilainya sendiri.</p>
+            </div>
+          </div>
+          <label for="presGroup">Kelompok tersimpan</label>
+          <select id="presGroup"><option value="">Pilih kelompok</option></select>
+          <div id="presGroupActions" class="btn-row hidden">
+            <button type="button" id="presGroupEdit" class="secondary-btn">Ubah Kelompok</button>
+            <button type="button" id="presGroupDelete" class="secondary-btn danger-btn">Hapus Kelompok</button>
+          </div>
+          <div id="presEmpty" class="empty-state">Belum ada kelompok presentasi. Isi Data Kelompok di atas lalu klik Simpan Kelompok.</div>
+          <div id="presMembers" class="member-list hidden"></div>
+        </div>
+
+        <form id="presForm" class="card assessment-form hidden stack-card">
+          <div class="card-heading">
+            <div>
+              <h3>3. Kinerja Presentasi</h3>
+              <p>Menilai: <strong id="presTarget">-</strong> <span id="presClass" class="hint"></span></p>
+            </div>
+            <span class="score-limit">Maksimal 16 poin</span>
+          </div>
+          <div class="form-grid">
+            <div>
+              <label>Tanggal Penilaian</label>
+              <input name="date" type="date" required>
+            </div>
+          </div>
+          <div class="rubric-header">
+            <h4>Skor Kinerja Presentasi</h4>
+            <button type="button" class="text-btn" data-modal="presentationRubric">Lihat pedoman skor</button>
+          </div>
+          <div id="presentationScores" class="score-list"></div>
+          <div class="total-box">
+            <span>Total Skor Kinerja Presentasi</span>
+            <strong id="presentationTotal">0 / 16</strong>
+          </div>
+          <label>Catatan Guru (opsional)</label>
+          <textarea name="notes" rows="3" placeholder="Catatan penampilan murid..."></textarea>
+          <button type="submit" class="primary-btn">Simpan Nilai Individu</button>
+        </form>
+      </section>
+
+      <!-- RECAP -->
+      <section id="recapPage" class="page">
+        <div class="page-intro">
+          <p class="eyebrow">REKAPITULASI</p>
+          <h2>Rekapitulasi Hasil Asesmen</h2>
+          <p>Pantau nilai setiap murid berdasarkan masing-masing jenis asesmen.</p>
+        </div>
+
+        <div class="recap-toolbar">
+          <input id="searchRecord" type="search" placeholder="Cari nama atau kelas murid...">
+          <button id="exportCsv" class="secondary-btn">Unduh CSV</button>
+          <button id="exportJson" class="primary-btn">Unduh JSON</button>
+        </div>
+
+        <div class="table-wrapper">
+          <table>
+            <thead>
+              <tr>
+                <th>No.</th>
+                <th>Nama Murid</th>
+                <th>Kelas</th>
+                <th>Challenge</th>
+                <th>Profil Lulusan</th>
+                <th>Uji Kompetensi</th>
+                <th>Presentasi</th>
+                <th>Aksi</th>
+              </tr>
+            </thead>
+            <tbody id="recapBody"></tbody>
+          </table>
+          <div id="emptyState" class="empty-state">Belum ada data penilaian.</div>
+        </div>
+
+        <div class="info-panel">
+          <strong>Catatan Perhitungan</strong>
+          <p>Nilai setiap asesmen dihitung secara mandiri dengan rumus: skor perolehan dibagi skor maksimal, kemudian dikalikan 100. Nilai yang belum dinilai ditampilkan sebagai tanda strip (-), bukan nol.</p>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <!-- RUBRIC MODAL -->
+  <div id="rubricModal" class="modal hidden">
+    <div class="modal-card">
+      <button class="modal-close" data-close="rubricModal">×</button>
+      <p class="eyebrow">PEDOMAN PENILAIAN</p>
+      <h2 id="rubricTitle">Pedoman Skor</h2>
+      <div id="rubricContent"></div>
+    </div>
+  </div>
+
+  <!-- DETAIL MODAL -->
+  <div id="detailModal" class="modal hidden">
+    <div class="modal-card large-modal">
+      <button class="modal-close" data-close="detailModal">×</button>
+      <p class="eyebrow">DETAIL HASIL ASESMEN</p>
+      <h2 id="detailTitle">Detail Murid</h2>
+      <div id="detailContent"></div>
+      <div class="modal-actions">
+        <button id="printDetail" class="primary-btn">Cetak Detail</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- PROFIL GURU MODAL -->
+  <div id="profileModal" class="modal hidden">
+    <div class="modal-card profile-modal">
+      <button type="button" class="modal-close" data-close="profileModal" aria-label="Tutup">×</button>
+      <p class="eyebrow">PENGATURAN PROFIL</p>
+      <h2>Profil Guru</h2>
+
+      <form id="profileForm" autocomplete="off" novalidate>
+        <div class="profile-photo-row">
+          <div class="profile-photo-preview" id="profilePhotoPreview">G</div>
+          <div class="profile-photo-actions">
+            <input id="profilePhotoInput" type="file" accept="image/png,image/jpeg,image/webp" hidden>
+            <button type="button" id="profilePhotoPick" class="secondary-btn">Unggah / Ganti Foto</button>
+            <button type="button" id="profilePhotoRemove" class="text-btn hidden">Hapus foto</button>
+            <small>JPG, PNG, atau WebP. Foto otomatis diperkecil.</small>
+          </div>
+        </div>
+
+        <div class="profile-fields">
+          <label for="profileName">Nama Lengkap</label>
+          <input id="profileName" type="text" placeholder="Nama lengkap guru" maxlength="80">
+
+          <label for="profileEmail">Email</label>
+          <input id="profileEmail" type="email" placeholder="nama@email.com" maxlength="100">
+
+          <label for="profileField">Bidang / Mata Pelajaran yang Diampu</label>
+          <input id="profileField" type="text" placeholder="Contoh: Matematika" maxlength="60">
+
+          <label for="profileUsername">Username</label>
+          <input id="profileUsername" type="text" placeholder="Username untuk masuk" maxlength="40" autocapitalize="off">
+
+          <label for="profilePassword">Password</label>
+          <div class="profile-pass">
+            <input id="profilePassword" type="password" placeholder="Password untuk masuk" maxlength="60">
+            <button type="button" id="profilePassToggle" class="text-btn">Tampilkan</button>
+          </div>
+        </div>
+
+        <p id="profileError" class="error-message" role="alert"></p>
+
+        <div class="modal-actions profile-actions">
+          <button type="button" id="profileCancel" class="secondary-btn">Batal</button>
+          <button type="submit" class="primary-btn">Simpan Perubahan</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <datalist id="studentList"></datalist>
+
+  <div id="toast" class="toast"></div>
+
+  <script src="script.js"></script>
+  <script src="profil-guru.js"></script>
+</body>
+</html>
